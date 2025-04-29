@@ -19,7 +19,7 @@
 
 void wasm_rt_sys_init();
 wasm2c_sandbox_funcs_t get_wasm2c_sandbox_info();
-void w2c__start(void* sbx);
+void w2c__start_command_export(void* sbx);
 
 int main(int argc, char const* argv[]) {
   #ifdef HFI_EMULATION
@@ -49,7 +49,7 @@ int main(int argc, char const* argv[]) {
 #endif
 
   sandbox_info.init_wasm2c_sandbox(sandbox);
-  w2c__start(sandbox);
+  w2c__start_command_export(sandbox);
 
 #ifdef WASM_USE_HFI
   wasm_rt_hfi_disable();
