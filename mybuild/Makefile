@@ -38,6 +38,8 @@ PARALLEL_COUNT=$(shell nproc)
 	cmake -S ../ -B $@ -DCMAKE_BUILD_TYPE=Release -DWasmSafetyEnforcement=WASM_USE_HFI -DHFI_EMULATION_ENABLE=ON
 ../build_release_hfiemulate2:
 	cmake -S ../ -B $@ -DCMAKE_BUILD_TYPE=Release -DWasmSafetyEnforcement=WASM_USE_HFI -DHFI_EMULATION2_ENABLE=ON
+../build_release_segment:
+	cmake -S ../ -B $@ -DCMAKE_BUILD_TYPE=Release -DWasmSafetyEnforcement=WASM_USE_SEGMENT
 
 build: ../build_release_guardpages ../build_release_boundschecks ../build_release_masking ../build_release_hfi ../build_release_hfiemulate ../build_release_hfiemulate2
 	cd ../build_release_guardpages && make -j$(PARALLEL_COUNT)
