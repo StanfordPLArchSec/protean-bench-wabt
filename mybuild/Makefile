@@ -41,13 +41,14 @@ PARALLEL_COUNT=$(shell nproc)
 ../build_release_segment:
 	cmake -S ../ -B $@ -DCMAKE_BUILD_TYPE=Release -DWasmSafetyEnforcement=WASM_USE_SEGMENT
 
-build: ../build_release_guardpages ../build_release_boundschecks ../build_release_masking ../build_release_hfi ../build_release_hfiemulate ../build_release_hfiemulate2
+build: ../build_release_guardpages ../build_release_boundschecks ../build_release_masking ../build_release_hfi ../build_release_hfiemulate ../build_release_hfiemulate2 ../build_release_segment
 	cd ../build_release_guardpages && make -j$(PARALLEL_COUNT)
 	cd ../build_release_boundschecks && make -j$(PARALLEL_COUNT)
 	cd ../build_release_masking && make -j$(PARALLEL_COUNT)
 	cd ../build_release_hfi && make -j$(PARALLEL_COUNT)
 	cd ../build_release_hfiemulate && make -j$(PARALLEL_COUNT)
 	cd ../build_release_hfiemulate2 && make -j$(PARALLEL_COUNT)
+	cd ../build_release_segment && make -j$(PARALLEL_COUNT)
 
 build_debug: ../build_debug_guardpages ../build_debug_boundschecks ../build_debug_masking ../build_debug_hfi ../build_debug_hfiemulate ../build_debug_hfiemulate_rr ../build_debug_hfiemulate_rr_shadowlog ../build_debug_hfiemulate2 ../build_debug_hfiemulate2_shadowlog ../build_debug_hfiemulate2_nouvwasi ../build_debug_hfiemulate3
 	cd ../build_debug_guardpages && make -j$(PARALLEL_COUNT)
